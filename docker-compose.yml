@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  verdict-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+# ==============================================================================
+# HOW TO BUILD AND RUN LOCALLY WITH DOCKER COMPOSE:
+# 
+# 1. Ensure Docker and Docker Compose are installed and running.
+# 2. Make sure you have your API keys saved in a `.env.local` file 
+#    in the same directory as this docker-compose.yml file.
+# 3. Run the following command to build the image and start the container in the background:
+#      docker-compose up --build -d
+# 4. Open your browser and navigate to: http://localhost:3000
+# 5. To watch the logs for incoming requests or errors, run:
+#      docker-compose logs -f
+# 6. To stop the application, run:
+#      docker-compose down
+# ==============================================================================
